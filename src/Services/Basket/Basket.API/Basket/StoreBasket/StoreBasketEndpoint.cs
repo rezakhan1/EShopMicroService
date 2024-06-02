@@ -3,15 +3,15 @@ using Mapster;
 
 namespace Basket.API.Basket.StoreBasket
 {
-    public record StoreBasketRequest(ShoppingCart ShoppingCart);
+    public record StoreBasketRequest(ShoppingCart Cart);
      public record StoreBasketResponse(string UserName);
     public class StoreBasketEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/basket", async (StoreBasketRequest shoppingCart, ISender sender) =>
+            app.MapPost("/basket", async (StoreBasketRequest Cart, ISender sender) =>
             {
-                var command = shoppingCart.Adapt<StorebBasketCommand>();
+                var command = Cart.Adapt<StorebBasketCommand>();
 
                 var result = await sender.Send(command);
 
